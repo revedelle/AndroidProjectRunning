@@ -39,13 +39,14 @@ public class GPService extends Service {
             lastLoc.set(location);
             lati = lastLoc.getLatitude();
             longi = lastLoc.getLongitude();
+            String toLog = ""+lati+";"+longi+"\n";
+            Log.i("2SU","Ecriture:"+toLog);
 
             try {
-                FileOutputStream fos = openFileOutput("test.txt", Context.MODE_PRIVATE);
-                PrintWriter p = new PrintWriter(fos);
-                p.println("" + lati + ";" + longi + "\n");
-                p.close();
+                FileOutputStream fos = openFileOutput("GPSPos", Context.MODE_PRIVATE);
+                fos.write(toLog.getBytes());
                 fos.close();
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
